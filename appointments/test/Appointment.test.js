@@ -6,13 +6,16 @@ import {Appointment} from '../src/Appointment';
 
 let container;
 let customer;
+let root;
+
+beforeEach(() => {
+  container = document.createElement('div');
+  root = createRoot(container);
+});
 
 describe('Appointment', () => {
   it("renders the customer's first name.", () => {
     customer = {firstName: 'Ashley'};
-    container = document.createElement('div');
-
-    const root = createRoot(container);
 
     act(() => {
       root.render(<Appointment customer={customer} />);
@@ -25,9 +28,6 @@ describe('Appointment', () => {
 describe('Appointment', () => {
   it("renders another customer's first name.", () => {
     customer = {firstName: 'Jordan'};
-    container = document.createElement('div');
-
-    const root = createRoot(container);
 
     act(() => {
       root.render(<Appointment customer={customer} />);

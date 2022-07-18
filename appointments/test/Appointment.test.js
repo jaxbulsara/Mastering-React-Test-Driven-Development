@@ -2,7 +2,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
-import {Appointment} from '../src/Appointment';
+import {Appointment, AppointmentsDayView} from '../src/Appointment';
 
 describe('Appointment', () => {
   let container;
@@ -31,7 +31,7 @@ describe('Appointment', () => {
   });
 });
 
-describe('AppointmentDayView', () => {
+describe('AppointmentsDayView', () => {
   let container;
   let root;
 

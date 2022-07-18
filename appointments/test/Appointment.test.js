@@ -4,20 +4,20 @@ import {act} from 'react-dom/test-utils';
 
 import {Appointment} from '../src/Appointment';
 
-let container;
-let customer;
-let root;
-
-beforeEach(() => {
-  container = document.createElement('div');
-  root = createRoot(container);
-});
-
-const render = component => {
-  act(() => root.render(component));
-};
-
 describe('Appointment', () => {
+  let container;
+  let customer;
+  let root;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    root = createRoot(container);
+  });
+
+  const render = component => {
+    act(() => root.render(component));
+  };
+
   it("renders the customer's first name.", () => {
     customer = {firstName: 'Ashley'};
 
@@ -25,9 +25,7 @@ describe('Appointment', () => {
 
     expect(container.textContent).toMatch('Ashley');
   });
-});
 
-describe('Appointment', () => {
   it("renders another customer's first name.", () => {
     customer = {firstName: 'Jordan'};
 

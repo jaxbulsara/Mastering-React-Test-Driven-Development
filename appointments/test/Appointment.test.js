@@ -4,10 +4,13 @@ import {act} from 'react-dom/test-utils';
 
 import {Appointment} from '../src/Appointment';
 
+let container;
+let customer;
+
 describe('Appointment', () => {
   it("renders the customer's first name.", () => {
-    const customer = {firstName: 'Ashley'};
-    const container = document.createElement('div');
+    customer = {firstName: 'Ashley'};
+    container = document.createElement('div');
 
     const root = createRoot(container);
 
@@ -21,8 +24,8 @@ describe('Appointment', () => {
 
 describe('Appointment', () => {
   it("renders another customer's first name.", () => {
-    const customer = {firstName: 'Jordan'};
-    const container = document.createElement('div');
+    customer = {firstName: 'Jordan'};
+    container = document.createElement('div');
 
     const root = createRoot(container);
 

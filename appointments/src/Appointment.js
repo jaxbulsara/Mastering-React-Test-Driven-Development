@@ -6,8 +6,15 @@ export const AppointmentsDayView = ({appointments}) => (
   <div id="appointmentsDayView">
     <ol>
       {appointments.map(appointment => (
-        <div key={appointment.startsAt} />
+        <li key={appointment.startsAt}>
+          {AppointmentTimeOfDay(appointment.startsAt)}
+        </li>
       ))}
     </ol>
   </div>
 );
+
+const AppointmentTimeOfDay = startsAt => {
+  const [hour, minute] = new Date(startsAt).toTimeString().split(':');
+  return `${hour}:${minute}`;
+};

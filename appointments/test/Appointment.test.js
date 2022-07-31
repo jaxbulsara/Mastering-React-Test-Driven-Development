@@ -72,4 +72,12 @@ describe('AppointmentsDayView', () => {
     expect(container.querySelectorAll('li')[0].textContent).toEqual('12:00');
     expect(container.querySelectorAll('li')[1].textContent).toEqual('13:00');
   });
+
+  it('initially shows a message saying there are no appointments today.', () => {
+    render(<AppointmentsDayView appointments={[]} />);
+
+    expect(container.textContent).toMatch(
+      'There are no appointments scheduled for today.'
+    );
+  });
 });

@@ -41,45 +41,58 @@ describe('AppointmentsDayView', () => {
     expect(container.querySelector('div#appointmentsDayView')).not.toBeNull();
   });
 
-  it('renders multiple appointments as an ordered list.', () => {
+  it('renders multiple appointments in a nav element.', () => {
     render(<AppointmentsDayView appointments={appointments} />);
+    const appointmentNav = container.querySelector('nav.appointmentNav');
 
-    expect(container.querySelector('ol')).not.toBeNull();
-    expect(container.querySelector('ol').children).toHaveLength(2);
-
-    expect(container.querySelectorAll('li')[0].textContent).toEqual('12:00');
-    expect(container.querySelectorAll('li')[1].textContent).toEqual('13:00');
+    expect(appointmentNav).not.toBeNull();
+    expect(appointmentNav.children).toHaveLength(2);
   });
 
-  it('renders each appointment time as a list item.', () => {
+  it('renders each appointment time.', () => {
     render(<AppointmentsDayView appointments={appointments} />);
+    const appointmentTimes = container.querySelectorAll(
+      'nav > .appointmentTime'
+    );
 
-    expect(container.querySelectorAll('li')).toHaveLength(2);
-    expect(container.querySelectorAll('li')[0].textContent).toEqual('12:00');
-    expect(container.querySelectorAll('li')[1].textContent).toEqual('13:00');
+    expect(appointmentTimes).toHaveLength(2);
+    expect(appointmentTimes[0].textContent).toEqual('12:00');
+    expect(appointmentTimes[1].textContent).toEqual('13:00');
+  });
+
+  it('renders the selected appointment as an article.', () => {
+    render(<AppointmentsDayView appointments={[]} />);
+
+    expect(
+      container.querySelector('article.appointmentWrapper')
+    ).not.toBeNull();
   });
 
   it('initially shows a message saying there are no appointments today.', () => {
     render(<AppointmentsDayView appointments={[]} />);
+    const appointment = container.querySelector('.appointmentWrapper');
 
-    expect(container.textContent).toMatch(
+    expect(appointment.textContent).toMatch(
       'There are no appointments scheduled for today.'
     );
   });
 
   it('selects the first appointment by default.', () => {
     render(<AppointmentsDayView appointments={appointments} />);
+    const appointment = container.querySelector('.appointmentWrapper');
 
-    expect(container.textContent).toMatch('Ashley');
+    expect(appointment.textContent).toMatch('Ashley');
   });
 
-  it('has a button element in each list item.', () => {
+  it('has a button element in each appointment time.', () => {
     render(<AppointmentsDayView appointments={appointments} />);
 
-    expect(container.querySelectorAll('li > button')).toHaveLength(2);
-    expect(container.querySelectorAll('li > button')[0].type).toEqual(
-      'button'
-    );
+    expect(
+      container.querySelectorAll('.appointmentTime > button')
+    ).toHaveLength(2);
+    expect(
+      container.querySelectorAll('.appointmentTime > button')[0].type
+    ).toEqual('button');
   });
 
   it('renders another appointment when selected.', () => {

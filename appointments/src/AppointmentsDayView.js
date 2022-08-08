@@ -6,23 +6,25 @@ export const AppointmentsDayView = ({appointments}) => {
 
   return (
     <div id="appointmentsDayView">
-      <ol>
+      <nav class="appointmentNav">
         {appointments.map((appointment, index) => (
-          <li key={appointment.startsAt}>
+          <div class="appointmentTime" key={appointment.startsAt}>
             <button
               type="button"
               onClick={() => setSelectedAppointment(index)}
             >
               {appointmentTimeOfDay(appointment.startsAt)}
             </button>
-          </li>
+          </div>
         ))}
-      </ol>
-      {appointments.length === 0 ? (
-        <p>There are no appointments scheduled for today.</p>
-      ) : (
-        <Appointment {...appointments[selectedAppointment]} />
-      )}
+      </nav>
+      <article className="appointmentWrapper">
+        {appointments.length === 0 ? (
+          <p>There are no appointments scheduled for today.</p>
+        ) : (
+          <Appointment {...appointments[selectedAppointment]} />
+        )}
+      </article>
     </div>
   );
 };

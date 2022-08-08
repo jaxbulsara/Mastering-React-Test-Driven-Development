@@ -1,0 +1,32 @@
+#appointmentsDayView {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    font-family: Verdana, Arial, Tahoma, Sans-Serif;
+}
+
+.appointmentTime {
+    margin: 0.5em 1em;
+}
+
+.appointmentTime > button {
+    padding: 0.5em 2em;
+}
+
+.appointmentWrapper {
+    padding-top: 0.5em;
+}
+
+.infoRow {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.infoRow .label {
+    text-align: right;
+    padding: 0.5em 1em;
+    font-weight: bold;
+}
+
+.infoRow .value {
+    padding: 0.5em 1em;
+}

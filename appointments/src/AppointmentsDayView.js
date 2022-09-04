@@ -6,9 +6,9 @@ export const AppointmentsDayView = ({appointments}) => {
 
   return (
     <div id="appointmentsDayView">
-      <nav class="appointmentNav">
+      <nav className="appointmentNav">
         {appointments.map((appointment, index) => (
-          <div class="appointmentTime" key={appointment.startsAt}>
+          <div className="appointmentTime" key={appointment.startsAt}>
             <button
               type="button"
               onClick={() => setSelectedAppointment(index)}

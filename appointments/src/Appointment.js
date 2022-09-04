@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Appointment = ({startsAt, customer, stylist, service, notes}) => {
   return (
-    <div class="appointment">
+    <div className="appointment">
       <h1>Today's appointment at {appointmentTimeOfDay(startsAt)}</h1>
       <div className="appointmentInfo">
         <div className="infoRow">

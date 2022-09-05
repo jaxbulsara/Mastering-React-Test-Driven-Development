@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import {createRoot} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
+import {createContainer} from './domManipulators';
 import {AppointmentsDayView} from '../src/AppointmentsDayView';
 
 describe('AppointmentsDayView', () => {
-  let container;
-  let root;
+  let container, render;
 
   const today = new Date();
   const appointments = [
@@ -28,13 +27,8 @@ describe('AppointmentsDayView', () => {
   ];
 
   beforeEach(() => {
-    container = document.createElement('div');
-    root = createRoot(container);
+    ({render, container} = createContainer());
   });
-
-  const render = component => {
-    act(() => root.render(component));
-  };
 
   it('renders a div with the right id', () => {
     render(<AppointmentsDayView appointments={[]} />);

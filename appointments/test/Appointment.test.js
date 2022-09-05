@@ -1,13 +1,11 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-import {act} from 'react-dom/test-utils';
 
+import {createContainer} from './domManipulators';
 import {Appointment} from '../src/Appointment';
 
 describe('Appointment', () => {
-  let container;
+  let render, container;
   let customer;
-  let root;
 
   const today = new Date();
   const appointment = {
@@ -23,13 +21,8 @@ describe('Appointment', () => {
   };
 
   beforeEach(() => {
-    container = document.createElement('div');
-    root = createRoot(container);
+    ({render, container} = createContainer());
   });
-
-  const render = component => {
-    act(() => root.render(component));
-  };
 
   it("renders the customer's first name.", () => {
     customer = {firstName: 'Ashley'};

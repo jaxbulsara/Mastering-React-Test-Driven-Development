@@ -11,6 +11,11 @@ describe('CustomerForm', () => {
   });
 
   const form = id => container.querySelector(`form[id="${id}"]`);
+  const expectTextInput = formElement => {
+    expect(formElement).not.toBeNull();
+    expect(formElement.tagName).toEqual('INPUT');
+    expect(formElement.type).toEqual('text');
+  };
 
   it('renders a form', () => {
     render(<CustomerForm />);
@@ -21,9 +26,6 @@ describe('CustomerForm', () => {
     render(<CustomerForm />);
 
     const field = form('customer').elements.firstName;
-
-    expect(field).not.toBeNull();
-    expect(field.tagName).toEqual('INPUT');
-    expect(field.type).toEqual('text');
+    expectTextInput(field);
   });
 });

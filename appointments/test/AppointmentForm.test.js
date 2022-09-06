@@ -77,5 +77,12 @@ describe('AppointmentForm', () => {
       expect(labelFor('service')).not.toBeNull();
       expect(labelFor('service').textContent).toEqual('Service');
     });
+
+    it('assigns an id that matches the label id', () => {
+      render(<AppointmentForm />);
+
+      expect(field('service').id).toEqual('service');
+      expect(labelFor('service').htmlFor).toEqual('service');
+    });
   });
 });

@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
   const [customer, setCustomer] = useState({firstName, lastName, phoneNumber});
 
-  const handleChange = ({target}) =>
+  const handleChange = ({target}) => {
+    console.log(`Changed input value: ${target.name}: '${target.value}'`);
     setCustomer(customer => ({...customer, [target.name]: target.value}));
+  };
 
   return (
     <form
@@ -14,21 +16,21 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
     >
       <TextInput
         name="firstName"
-        value={firstName}
+        value={customer['firstName']}
         label="First name"
         onChange={handleChange}
       />
 
       <TextInput
         name="lastName"
-        value={lastName}
+        value={customer['lastName']}
         label="Last name"
         onChange={handleChange}
       />
 
       <TextInput
         name="phoneNumber"
-        value={phoneNumber}
+        value={customer['phoneNumber']}
         label="Phone number"
         onChange={handleChange}
       />

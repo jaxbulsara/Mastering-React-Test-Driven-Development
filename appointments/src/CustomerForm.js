@@ -12,7 +12,9 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
       className="customer_form"
       onSubmit={() => onSubmit(customer)}
     >
-      <label htmlFor="firstName">First name</label>
+      <label className="customer_form__label" htmlFor="firstName">
+        First name
+      </label>
       <input
         type="text"
         name="firstName"
@@ -22,7 +24,9 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
         onChange={handleChange}
       />
 
-      <label htmlFor="lastName">Last name</label>
+      <label className="customer_form__label" htmlFor="lastName">
+        Last name
+      </label>
       <input
         type="text"
         name="lastName"
@@ -32,7 +36,9 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
         onChange={handleChange}
       />
 
-      <label htmlFor="phoneNumber">Phone number</label>
+      <label className="customer_form__label" htmlFor="phoneNumber">
+        Phone number
+      </label>
       <input
         type="text"
         name="phoneNumber"

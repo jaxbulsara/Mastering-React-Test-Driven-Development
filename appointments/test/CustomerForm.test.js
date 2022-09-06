@@ -43,6 +43,7 @@ describe('CustomerForm', () => {
       render(<CustomerForm />);
       expect(labelFor(fieldName)).not.toBeNull();
       expect(labelFor(fieldName).textContent).toEqual(value);
+      expect(labelFor(fieldName).className).toEqual('customer_form__label');
     });
 
   const itAssignsAnIdToMatchLabelToField = (fieldName, fieldId) =>

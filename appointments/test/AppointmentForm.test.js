@@ -19,4 +19,13 @@ describe('AppointmentForm', () => {
     expect(form('appointment')).not.toBeNull();
     expect(form('appointment').className).toEqual('appointment_form');
   });
+
+  describe('service field', () => {
+    it('renders as a select box', () => {
+      render(<AppointmentForm />);
+
+      expect(form('appointment').elements.service).not.toBeNull();
+      expect(form('appointment').elements.service.tagName).toEqual('SELECT');
+    });
+  });
 });

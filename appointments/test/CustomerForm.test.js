@@ -107,4 +107,14 @@ describe('CustomerForm', () => {
     itSavesTheExistingValueWhenSubmitted(fieldName);
     itSavesANewValueWhenSubmitted(fieldName, fieldName);
   });
+
+  describe('phone number field', () => {
+    const fieldName = 'phoneNumber';
+    itRendersAsATextBox(fieldName);
+    itPrefillsTheExistingValue(fieldName);
+    itRendersALabel(fieldName, 'Phone number');
+    itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
+    itSavesTheExistingValueWhenSubmitted(fieldName);
+    itSavesANewValueWhenSubmitted(fieldName, fieldName);
+  });
 });

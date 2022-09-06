@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
   const [customer, setCustomer] = useState({firstName, lastName, phoneNumber});
 
-  console.log('Customer data:', customer);
+  console.debug('Customer data:', customer);
 
   const handleChange = ({target}) => {
-    console.log(`Changed input value: ${target.name}: '${target.value}'`);
+    console.debug(`Changed input value: ${target.name}: '${target.value}'`);
     setCustomer(customer => ({...customer, [target.name]: target.value}));
   };
 

@@ -4,7 +4,7 @@ import {Appointment} from './Appointment';
 export const AppointmentsDayView = ({appointments}) => {
   const [selectedAppointment, setSelectedAppointment] = useState(0);
 
-  console.log(
+  console.info(
     `Selected appointment ${selectedAppointment}:`,
     appointments[selectedAppointment]
   );

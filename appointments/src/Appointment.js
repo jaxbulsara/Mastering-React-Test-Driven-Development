@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Appointment = ({startsAt, customer, stylist, service, notes}) => {
-  console.log(
+  console.debug(
     `Rendered appointment: Stylist: ${stylist}, Time: ${appointmentTimeOfDay(
       startsAt
     )}, Customer: ${customer['firstName']} ${customer['lastName']}`

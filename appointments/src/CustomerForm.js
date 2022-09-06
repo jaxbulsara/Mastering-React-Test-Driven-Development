@@ -48,7 +48,11 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
         onChange={handleChange}
       />
 
-      <input type="submit" value="Add" />
+      <input
+        type="submit"
+        className="customer_form__submit_button"
+        value="Add"
+      />
     </form>
   );
 };

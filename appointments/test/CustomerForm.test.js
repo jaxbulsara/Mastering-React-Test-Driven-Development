@@ -119,5 +119,6 @@ describe('CustomerForm', () => {
 
     const submitButton = container.querySelector('input[type="submit"]');
     expect(submitButton).not.toBeNull();
+    expect(submitButton.className).toEqual('customer_form__submit_button');
   });
 });

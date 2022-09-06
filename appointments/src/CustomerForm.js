@@ -12,41 +12,31 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
       className="customer_form"
       onSubmit={() => onSubmit(customer)}
     >
-      <TextField
+      <label htmlFor="firstName">First name</label>
+      <input
+        type="text"
         name="firstName"
+        id="firstName"
         value={firstName}
-        label="First name"
         onChange={handleChange}
       />
-
-      <TextField
+      <label htmlFor="lastName">Last name</label>
+      <input
+        type="text"
         name="lastName"
+        id="lastName"
         value={lastName}
-        label="Last name"
         onChange={handleChange}
       />
-
-      <TextField
+      <label htmlFor="phoneNumber">Phone number</label>
+      <input
+        type="text"
         name="phoneNumber"
+        id="phoneNumber"
         value={phoneNumber}
-        label="Phone number"
         onChange={handleChange}
       />
-
       <input type="submit" value="Add" />
     </form>
   );
 };
-
-const TextField = ({name, value, label, onChange}) => (
-  <div className="text_field">
-    <label htmlFor={name}>{label}</label>
-    <input
-      type="text"
-      name={name}
-      id={name}
-      value={value}
-      onChange={onChange}
-    />
-  </div>
-);

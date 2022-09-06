@@ -37,10 +37,8 @@
 
 .customer_form {}
 
+.customer_form__label {}
+
 .customer_form__text_input {}
-
-.customer_form__text_input__label {}
-
-.customer_form__text_input__input {}
 
 .customer_form__submit_button {}

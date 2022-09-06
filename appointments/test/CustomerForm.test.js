@@ -59,6 +59,8 @@ describe('CustomerForm', () => {
 
   const itSavesTheExistingValueWhenSubmitted = fieldName =>
     it('saves the existing value when submitted', () => {
+      expect.hasAssertions();
+
       render(
         <CustomerForm
           {...{[fieldName]: 'existingValue'}}

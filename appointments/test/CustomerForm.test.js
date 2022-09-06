@@ -29,6 +29,7 @@ describe('CustomerForm', () => {
   it('renders a form', () => {
     render(<CustomerForm />);
     expect(form('customer')).not.toBeNull();
+    expect(form('customer').className).toEqual('customer_form');
   });
 
   const itRendersAsATextBox = fieldName =>

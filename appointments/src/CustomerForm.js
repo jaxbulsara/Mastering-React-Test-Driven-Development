@@ -7,7 +7,11 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
     setCustomer(customer => ({...customer, [target.name]: target.value}));
 
   return (
-    <form id="customer" onSubmit={() => onSubmit(customer)}>
+    <form
+      id="customer"
+      className="customer_form"
+      onSubmit={() => onSubmit(customer)}
+    >
       <TextField
         name="firstName"
         value={firstName}

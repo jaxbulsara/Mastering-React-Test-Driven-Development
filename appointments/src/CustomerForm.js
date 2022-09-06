@@ -16,6 +16,7 @@ export const CustomerForm = ({firstName, lastName, onSubmit}) => {
         value={firstName}
         onChange={handleChangeFirstName}
       />
+      <label htmlFor="lastName">Last name</label>
       <input type="text" name="lastName" value={lastName} />
     </form>
   );

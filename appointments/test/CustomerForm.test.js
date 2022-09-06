@@ -102,7 +102,7 @@ describe('CustomerForm', () => {
     const fieldName = 'lastName';
     itRendersAsATextBox(fieldName);
     itPrefillsTheExistingValue(fieldName);
-    // itRendersALabel(fieldName, 'First name');
+    itRendersALabel(fieldName, 'Last name');
     // itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
     // itSavesTheExistingValueWhenSubmitted(fieldName);
     // itSavesANewValueWhenSubmitted(fieldName, fieldName);

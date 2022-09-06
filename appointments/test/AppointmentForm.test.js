@@ -14,6 +14,8 @@ describe('AppointmentForm', () => {
 
   const form = id => container.querySelector(`form[id="${id}"]`);
   const field = name => form('appointment').elements[name];
+  const labelFor = formElement =>
+    container.querySelector(`label[for=${formElement}]`);
 
   it('renders a form', () => {
     render(<AppointmentForm />);
@@ -67,6 +69,13 @@ describe('AppointmentForm', () => {
 
       const option = findOption(field('service'), 'serviceB');
       expect(option.selected).toBeTruthy();
+    });
+
+    it('renders a label for the field', () => {
+      render(<AppointmentForm />);
+
+      expect(labelFor('service')).not.toBeNull();
+      expect(labelFor('service').textContent).toEqual('Service');
     });
   });
 });

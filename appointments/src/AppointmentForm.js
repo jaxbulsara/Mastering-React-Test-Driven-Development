@@ -2,6 +2,7 @@ import React from 'react';
 
 export const AppointmentForm = ({selectableServices, service}) => (
   <form id="appointment" class="appointment_form">
+    <label htmlFor="service">Service</label>
     <select name="service" value={service} readOnly>
       <option />
       {selectableServices.map(s => (

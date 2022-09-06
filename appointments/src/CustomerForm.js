@@ -43,8 +43,8 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
 };
 
 const TextInput = ({name, value, label, onChange}) => (
-  <div class="customer_form__text_input">
-    <label for={name} className="customer_form__text_input__label">
+  <div className="customer_form__text_input">
+    <label htmlFor={name} className="customer_form__text_input__label">
       {label}
     </label>
     <input

@@ -1,9 +1,12 @@
+body {
+    font-family: Verdana, Arial, Tahoma, Sans-Serif;
+}
+
 /* Appointments */
 
 #appointmentsDayView {
     display: grid;
     grid-template-columns: 25% 75%;
-    font-family: Verdana, Arial, Tahoma, Sans-Serif;
 }
 
 .appointmentTime {
@@ -36,11 +39,12 @@
 /* CustomerForm */
 
 .customer_form {
-
+  width: 360px;
+  margin: auto;
 }
 
 .customer_form__text_input {
-
+  margin: 1em 0;
 }
 
 .customer_form__text_input__label {
@@ -48,9 +52,11 @@
 }
 
 .customer_form__text_input__input {
-
+  float: right;
+  width: 60%;
 }
 
 .customer_form__submit_button {
-
+  float: right;
+  width: 60%;
 }

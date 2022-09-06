@@ -12,19 +12,10 @@ describe('CustomerForm', () => {
     ({render, container} = createContainer());
   });
 
-  // Selectors
   const form = id => container.querySelector(`form[id="${id}"]`);
   const field = name => form('customer').elements[name];
-
   const labelFor = formElement =>
     container.querySelector(`label[for="${formElement}"]`);
-
-  // Common expectations
-  const expectToBeTextInput = formElement => {
-    expect(formElement).not.toBeNull();
-    expect(formElement.tagName).toEqual('INPUT');
-    expect(formElement.type).toEqual('text');
-  };
 
   it('renders a form', () => {
     render(<CustomerForm />);
@@ -35,7 +26,10 @@ describe('CustomerForm', () => {
   const itRendersAsATextBox = fieldName =>
     it('renders a text box.', () => {
       render(<CustomerForm />);
-      expectToBeTextInput(field(fieldName));
+      expect(field(fieldName)).not.toBeNull();
+      expect(field(fieldName).tagName).toEqual('INPUT');
+      expect(field(fieldName).type).toEqual('text');
+      expect(field(fieldName).className).toEqual('customer_form__text_input');
     });
 
   const itPrefillsTheExistingValue = fieldName =>

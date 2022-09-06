@@ -17,25 +17,31 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
         type="text"
         name="firstName"
         id="firstName"
+        className="customer_form__text_input"
         value={firstName}
         onChange={handleChange}
       />
+
       <label htmlFor="lastName">Last name</label>
       <input
         type="text"
         name="lastName"
         id="lastName"
+        className="customer_form__text_input"
         value={lastName}
         onChange={handleChange}
       />
+
       <label htmlFor="phoneNumber">Phone number</label>
       <input
         type="text"
         name="phoneNumber"
         id="phoneNumber"
+        className="customer_form__text_input"
         value={phoneNumber}
         onChange={handleChange}
       />
+
       <input type="submit" value="Add" />
     </form>
   );

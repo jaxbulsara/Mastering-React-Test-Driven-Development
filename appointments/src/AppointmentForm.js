@@ -12,5 +12,12 @@ export const AppointmentForm = ({selectableServices}) => (
 );
 
 AppointmentForm.defaultProps = {
-  selectableServices: ['serviceA', 'serviceB', 'serviceC', 'serviceD'],
+  selectableServices: [
+    'Cut',
+    'Blow-dry',
+    'Cut & color',
+    'Beard trim',
+    'Cut & beard trim',
+    'Extensions',
+  ],
 };

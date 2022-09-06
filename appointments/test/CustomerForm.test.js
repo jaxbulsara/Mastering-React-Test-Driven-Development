@@ -103,7 +103,7 @@ describe('CustomerForm', () => {
     itRendersAsATextBox(fieldName);
     itPrefillsTheExistingValue(fieldName);
     itRendersALabel(fieldName, 'Last name');
-    // itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
+    itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
     // itSavesTheExistingValueWhenSubmitted(fieldName);
     // itSavesANewValueWhenSubmitted(fieldName, fieldName);
   });

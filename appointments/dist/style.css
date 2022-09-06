@@ -1,3 +1,5 @@
+/* Appointments */
+
 #appointmentsDayView {
     display: grid;
     grid-template-columns: 25% 75%;
@@ -30,3 +32,15 @@
 .infoRow .value {
     padding: 0.5em 1em;
 }
+
+/* CustomerForm */
+
+.customer_form {}
+
+.customer_form__text_input {}
+
+.customer_form__text_input__label {}
+
+.customer_form__text_input__input {}
+
+.customer_form__submit_button {}

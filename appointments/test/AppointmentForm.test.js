@@ -13,6 +13,7 @@ describe('AppointmentForm', () => {
   });
 
   const form = id => container.querySelector(`form[id="${id}"]`);
+  const field = name => form('appointment').elements[name];
 
   it('renders a form', () => {
     render(<AppointmentForm />);
@@ -24,10 +25,16 @@ describe('AppointmentForm', () => {
     it('renders as a select box', () => {
       render(<AppointmentForm />);
 
-      const field = name => form('appointment').elements[name];
-
       expect(field('service')).not.toBeNull();
       expect(field('service').tagName).toEqual('SELECT');
+    });
+
+    it('initially has a blank value chosen', () => {
+      render(<AppointmentForm />);
+
+      const firstNode = field('service').childNodes[0];
+      expect(firstNode.value).toEqual('');
+      expect(firstNode.selected).toBeTruthy();
     });
   });
 });

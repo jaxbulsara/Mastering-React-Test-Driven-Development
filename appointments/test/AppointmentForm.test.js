@@ -36,5 +36,18 @@ describe('AppointmentForm', () => {
       expect(firstNode.value).toEqual('');
       expect(firstNode.selected).toBeTruthy();
     });
+
+    it('lists all salon services', () => {
+      const selectableServices = ['serviceA', 'serviceB'];
+
+      render(<AppointmentForm selectableServices={selectableServices} />);
+
+      const optionNodes = Array.from(field('service').childNodes);
+      const renderedServices = optionNodes.map(node => node.textContent);
+
+      expect(renderedServices).toEqual(
+        expect.arrayContaining(selectableServices)
+      );
+    });
   });
 });

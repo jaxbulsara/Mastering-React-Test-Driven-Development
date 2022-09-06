@@ -101,7 +101,7 @@ describe('CustomerForm', () => {
   describe('last name field', () => {
     const fieldName = 'lastName';
     itRendersAsATextBox(fieldName);
-    // itPrefillsTheExistingValue(fieldName);
+    itPrefillsTheExistingValue(fieldName);
     // itRendersALabel(fieldName, 'First name');
     // itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
     // itSavesTheExistingValueWhenSubmitted(fieldName);

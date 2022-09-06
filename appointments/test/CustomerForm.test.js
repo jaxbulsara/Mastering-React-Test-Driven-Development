@@ -117,4 +117,11 @@ describe('CustomerForm', () => {
     itSavesTheExistingValueWhenSubmitted(fieldName);
     itSavesANewValueWhenSubmitted(fieldName, fieldName);
   });
+
+  it('has a submit button', () => {
+    render(<CustomerForm />);
+
+    const submitButton = container.querySelector('input[type="submit"]');
+    expect(submitButton).not.toBeNull();
+  });
 });

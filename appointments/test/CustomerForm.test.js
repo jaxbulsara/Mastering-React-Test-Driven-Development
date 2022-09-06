@@ -29,7 +29,9 @@ describe('CustomerForm', () => {
       expect(field(fieldName)).not.toBeNull();
       expect(field(fieldName).tagName).toEqual('INPUT');
       expect(field(fieldName).type).toEqual('text');
-      expect(field(fieldName).className).toEqual('customer_form__text_input');
+      expect(field(fieldName).className).toEqual(
+        'customer_form__text_input__input'
+      );
     });
 
   const itPrefillsTheExistingValue = fieldName =>
@@ -43,7 +45,9 @@ describe('CustomerForm', () => {
       render(<CustomerForm />);
       expect(labelFor(fieldName)).not.toBeNull();
       expect(labelFor(fieldName).textContent).toEqual(value);
-      expect(labelFor(fieldName).className).toEqual('customer_form__label');
+      expect(labelFor(fieldName).className).toEqual(
+        'customer_form__text_input__label'
+      );
     });
 
   const itAssignsAnIdToMatchLabelToField = (fieldName, fieldId) =>
@@ -84,6 +88,16 @@ describe('CustomerForm', () => {
       ReactTestUtils.Simulate.submit(form('customer'));
     });
 
+  const itRendersInADiv = (fieldName, className) =>
+    it('renders in a div', () => {
+      render(<CustomerForm />);
+
+      expect(field(fieldName).parentNode.tagName).toEqual('DIV');
+      expect(field(fieldName).parentNode.className).toEqual(
+        'customer_form__text_input'
+      );
+    });
+
   describe('first name field', () => {
     const fieldName = 'firstName';
     itRendersAsATextBox(fieldName);
@@ -92,6 +106,7 @@ describe('CustomerForm', () => {
     itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
     itSavesTheExistingValueWhenSubmitted(fieldName);
     itSavesANewValueWhenSubmitted(fieldName, fieldName);
+    itRendersInADiv(fieldName, 'customer_form__text_input');
   });
 
   describe('last name field', () => {

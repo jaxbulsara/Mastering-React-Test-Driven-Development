@@ -12,39 +12,24 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
       className="customer_form"
       onSubmit={() => onSubmit(customer)}
     >
-      <label className="customer_form__label" htmlFor="firstName">
-        First name
-      </label>
-      <input
-        type="text"
+      <TextInput
         name="firstName"
-        id="firstName"
-        className="customer_form__text_input"
         value={firstName}
+        label="First name"
         onChange={handleChange}
       />
 
-      <label className="customer_form__label" htmlFor="lastName">
-        Last name
-      </label>
-      <input
-        type="text"
+      <TextInput
         name="lastName"
-        id="lastName"
-        className="customer_form__text_input"
         value={lastName}
+        label="Last name"
         onChange={handleChange}
       />
 
-      <label className="customer_form__label" htmlFor="phoneNumber">
-        Phone number
-      </label>
-      <input
-        type="text"
+      <TextInput
         name="phoneNumber"
-        id="phoneNumber"
-        className="customer_form__text_input"
         value={phoneNumber}
+        label="Phone number"
         onChange={handleChange}
       />
 
@@ -56,3 +41,19 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
     </form>
   );
 };
+
+const TextInput = ({name, value, label, onChange}) => (
+  <div class="customer_form__text_input">
+    <label for={name} className="customer_form__text_input__label">
+      {label}
+    </label>
+    <input
+      type="input"
+      name={name}
+      id={name}
+      className="customer_form__text_input__input"
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);

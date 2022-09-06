@@ -16,6 +16,7 @@ export const CustomerForm = ({firstName, onSubmit}) => {
         value={firstName}
         onChange={handleChangeFirstName}
       />
+      <input type="text" name="lastName" />
     </form>
   );
 };

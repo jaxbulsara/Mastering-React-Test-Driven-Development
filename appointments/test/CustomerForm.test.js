@@ -37,7 +37,7 @@ describe('CustomerForm', () => {
       expectToBeTextInput(field(fieldName));
     });
 
-  const itIncludesTheExistingValue = fieldName =>
+  const itPrefillsTheExistingValue = fieldName =>
     it('includes the existing value', () => {
       render(<CustomerForm {...{[fieldName]: 'value'}} />);
       expect(field(fieldName).value).toEqual('value');
@@ -89,11 +89,22 @@ describe('CustomerForm', () => {
     });
 
   describe('first name field', () => {
-    itRendersAsATextBox('firstName');
-    itIncludesTheExistingValue('firstName');
-    itRendersALabel('firstName', 'First name');
-    itAssignsAnIdToMatchLabelToField('firstName', 'firstName');
-    itSavesTheExistingValueWhenSubmitted('firstName');
-    itSavesANewValueWhenSubmitted('firstName', 'firstName');
+    const fieldName = 'firstName';
+    itRendersAsATextBox(fieldName);
+    itPrefillsTheExistingValue(fieldName);
+    itRendersALabel(fieldName, 'First name');
+    itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
+    itSavesTheExistingValueWhenSubmitted(fieldName);
+    itSavesANewValueWhenSubmitted(fieldName, fieldName);
+  });
+
+  describe('last name field', () => {
+    const fieldName = 'lastName';
+    itRendersAsATextBox(fieldName);
+    // itPrefillsTheExistingValue(fieldName);
+    // itRendersALabel(fieldName, 'First name');
+    // itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
+    // itSavesTheExistingValueWhenSubmitted(fieldName);
+    // itSavesANewValueWhenSubmitted(fieldName, fieldName);
   });
 });

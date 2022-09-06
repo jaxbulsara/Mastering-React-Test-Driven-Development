@@ -29,7 +29,7 @@ const services = [
 const generateFakeCustomer = () => ({
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
-  phoneNumber: faker.phone.phoneNumberFormat(1),
+  phoneNumber: faker.phone.number(1),
 });
 
 const generateFakeAppointment = () => ({

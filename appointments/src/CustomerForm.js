@@ -6,6 +6,9 @@ export const CustomerForm = ({firstName, lastName, onSubmit}) => {
   const handleChangeFirstName = ({target}) =>
     setCustomer(customer => ({...customer, firstName: target.value}));
 
+  const handleChangeLastName = ({target}) =>
+    setCustomer(customer => ({...customer, lastName: target.value}));
+
   return (
     <form id="customer" onSubmit={() => onSubmit(customer)}>
       <label htmlFor="firstName">First name</label>
@@ -22,7 +25,7 @@ export const CustomerForm = ({firstName, lastName, onSubmit}) => {
         name="lastName"
         id="lastName"
         value={lastName}
-        readOnly
+        onChange={handleChangeLastName}
       />
     </form>
   );

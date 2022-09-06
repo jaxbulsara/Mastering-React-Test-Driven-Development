@@ -86,6 +86,8 @@ describe('AppointmentForm', () => {
     });
 
     it('saves the existing value when submitted', () => {
+      expect.hasAssertions();
+
       const selectableServices = ['newValue', 'existingValue'];
 
       render(
@@ -96,6 +98,27 @@ describe('AppointmentForm', () => {
         />
       );
 
+      ReactTestUtils.Simulate.submit(form('appointment'));
+    });
+
+    it('saves new value when submitted', () => {
+      expect.hasAssertions();
+
+      const selectableServices = ['newValue', 'existingValue'];
+
+      render(
+        <AppointmentForm
+          selectableServices={selectableServices}
+          service="existingValue"
+          onSubmit={props => expect(props['service']).toEqual('newValue')}
+        />
+      );
+
+      act(() =>
+        ReactTestUtils.Simulate.change(field('service'), {
+          target: {value: 'newValue', name: 'service'},
+        })
+      );
       ReactTestUtils.Simulate.submit(form('appointment'));
     });
   });

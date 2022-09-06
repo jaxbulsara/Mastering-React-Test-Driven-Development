@@ -3,41 +3,42 @@ import React, {useState} from 'react';
 export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
   const [customer, setCustomer] = useState({firstName, lastName, phoneNumber});
 
-  const handleChangeFirstName = ({target}) =>
-    setCustomer(customer => ({...customer, firstName: target.value}));
-
-  const handleChangeLastName = ({target}) =>
-    setCustomer(customer => ({...customer, lastName: target.value}));
-
-  const handleChangePhoneNumber = ({target}) =>
-    setCustomer(customer => ({...customer, phoneNumber: target.value}));
+  const handleChange = ({target}) =>
+    setCustomer(customer => ({...customer, [target.name]: target.value}));
 
   return (
     <form id="customer" onSubmit={() => onSubmit(customer)}>
-      <label htmlFor="firstName">First name</label>
-      <input
-        type="text"
+      <TextField
         name="firstName"
-        id="firstName"
         value={firstName}
-        onChange={handleChangeFirstName}
+        label="First name"
+        onChange={handleChange}
       />
-      <label htmlFor="lastName">Last name</label>
-      <input
-        type="text"
+      <TextField
         name="lastName"
-        id="lastName"
         value={lastName}
-        onChange={handleChangeLastName}
+        label="Last name"
+        onChange={handleChange}
       />
-      <label htmlFor="phoneNumber">Phone number</label>
-      <input
-        type="text"
+      <TextField
         name="phoneNumber"
-        id="phoneNumber"
         value={phoneNumber}
-        onChange={handleChangePhoneNumber}
+        label="Phone number"
+        onChange={handleChange}
       />
     </form>
   );
 };
+
+const TextField = ({name, value, label, onChange}) => (
+  <div class="text_field">
+    <label htmlFor={name}>{label}</label>
+    <input
+      type="text"
+      name={name}
+      id={name}
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);

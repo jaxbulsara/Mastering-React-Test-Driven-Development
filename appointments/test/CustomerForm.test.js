@@ -104,7 +104,7 @@ describe('CustomerForm', () => {
     itPrefillsTheExistingValue(fieldName);
     itRendersALabel(fieldName, 'Last name');
     itAssignsAnIdToMatchLabelToField(fieldName, fieldName);
-    // itSavesTheExistingValueWhenSubmitted(fieldName);
+    itSavesTheExistingValueWhenSubmitted(fieldName);
     // itSavesANewValueWhenSubmitted(fieldName, fieldName);
   });
 });

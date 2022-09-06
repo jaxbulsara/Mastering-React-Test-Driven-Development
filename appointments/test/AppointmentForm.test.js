@@ -84,5 +84,19 @@ describe('AppointmentForm', () => {
       expect(field('service').id).toEqual('service');
       expect(labelFor('service').htmlFor).toEqual('service');
     });
+
+    it('saves the existing value when submitted', () => {
+      const selectableServices = ['newValue', 'existingValue'];
+
+      render(
+        <AppointmentForm
+          selectableServices={selectableServices}
+          service="existingValue"
+          onSubmit={props => expect(props['service']).toEqual('existingValue')}
+        />
+      );
+
+      ReactTestUtils.Simulate.submit(form('appointment'));
+    });
   });
 });

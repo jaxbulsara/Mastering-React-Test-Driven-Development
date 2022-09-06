@@ -4,6 +4,11 @@ import {Appointment} from './Appointment';
 export const AppointmentsDayView = ({appointments}) => {
   const [selectedAppointment, setSelectedAppointment] = useState(0);
 
+  console.log(
+    `Selected appointment ${selectedAppointment}:`,
+    appointments[selectedAppointment]
+  );
+
   return (
     <div id="appointmentsDayView">
       <nav className="appointmentNav">

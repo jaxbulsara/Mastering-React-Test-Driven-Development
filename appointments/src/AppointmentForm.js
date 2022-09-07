@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 export const AppointmentForm = ({
   selectableServices,
   service,
+  today,
   salonOpensAt,
   salonClosesAt,
   onSubmit,
@@ -36,6 +37,7 @@ export const AppointmentForm = ({
       </select>
 
       <TimeSlotTable
+        today={today}
         salonOpensAt={salonOpensAt}
         salonClosesAt={salonClosesAt}
       />
@@ -56,12 +58,19 @@ AppointmentForm.defaultProps = {
   salonClosesAt: 19,
 };
 
-const TimeSlotTable = ({salonOpensAt, salonClosesAt}) => {
+const TimeSlotTable = ({today, salonOpensAt, salonClosesAt}) => {
+  const dates = weeklyDateValues(today);
   const timeSlots = dailyTimeSlots(salonOpensAt, salonClosesAt);
 
   return (
     <div class="time_slots">
       <span className="time_slots__cell time_slots__blank"></span>
+
+      {dates.map(date => (
+        <span class="time_slots__cell time_slots__date" key={date}>
+          {toShortDate(date)}
+        </span>
+      ))}
 
       {timeSlots.map(timeSlot => (
         <span class="time_slots__cell time_slots__time" key={timeSlot}>
@@ -72,12 +81,25 @@ const TimeSlotTable = ({salonOpensAt, salonClosesAt}) => {
   );
 };
 
+const weeklyDateValues = startDate => {
+  const midnight = new Date(startDate).setHours(0, 0, 0, 0);
+  const increment = 24 * 60 * 60 * 1000;
+
+  return Array(7)
+    .fill([midnight])
+    .reduce((acc, _, i) => acc.concat([midnight + i * increment]));
+};
+
+const toShortDate = timestamp => {
+  const [day, , dayOfMonth] = new Date(timestamp).toDateString().split(' ');
+
+  return `${day} ${dayOfMonth}`;
+};
+
 const dailyTimeSlots = (salonOpensAt, salonClosesAt) => {
   const totalSlots = (salonClosesAt - salonOpensAt) * 2;
   const startTime = new Date().setHours(salonOpensAt, 0, 0, 0);
   const increment = 30 * 60 * 1000;
-
-  console.log(totalSlots, startTime, increment);
 
   return Array(totalSlots)
     .fill([startTime])

@@ -161,5 +161,23 @@ describe('AppointmentForm', () => {
         'time_slots__cell time_slots__blank'
       );
     });
+
+    it('renders a week of available dates', () => {
+      const today = new Date(2022, 8, 7);
+
+      render(<AppointmentForm today={today} />);
+
+      const dates = timeSlotTable().querySelectorAll('.time_slots__date');
+
+      expect(dates).toHaveLength(7);
+      expect(dates[0].textContent).toEqual('Wed 07');
+      expect(dates[1].textContent).toEqual('Thu 08');
+      expect(dates[6].textContent).toEqual('Tue 13');
+
+      expectEachElementToHaveClassName(
+        dates,
+        'time_slots__cell time_slots__date'
+      );
+    });
   });
 });

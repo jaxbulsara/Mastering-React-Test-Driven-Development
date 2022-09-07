@@ -262,6 +262,30 @@ describe('AppointmentForm', () => {
       );
     });
 
+    it('preselects the existing value', () => {
+      const today = new Date();
+      const availableTimeSlots = [
+        {startsAt: today.setHours(9, 0, 0, 0)},
+        {startsAt: today.setHours(9, 30, 0, 0)},
+      ];
+
+      render(
+        <AppointmentForm
+          availableTimeSlots={availableTimeSlots}
+          startsAt={availableTimeSlots[0].startsAt}
+          today={today}
+        />
+      );
+
+      const choicesWrapper = timeSlotTable().querySelector(
+        '.time_slots__choices_wrapper'
+      );
+      const inputs = choicesWrapper.querySelectorAll('input[name="startsAt"]');
+
+      expect(inputs[0].checked).toBeTruthy();
+      expect(inputs[1].checked).toBeFalsy();
+    });
+
     it('saves the existing value when submitted', () => {
       expect.hasAssertions();
 

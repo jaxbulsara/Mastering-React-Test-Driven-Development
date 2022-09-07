@@ -152,5 +152,14 @@ describe('AppointmentForm', () => {
         'time_slots__cell time_slots__time'
       );
     });
+
+    it('renders an empty cell as the first cell in the table.', () => {
+      render(<AppointmentForm />);
+
+      expect(timeSlotTable().firstChild.textContent).toEqual('');
+      expect(timeSlotTable().firstChild.className).toEqual(
+        'time_slots__cell time_slots__blank'
+      );
+    });
   });
 });

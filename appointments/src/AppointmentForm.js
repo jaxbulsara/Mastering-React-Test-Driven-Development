@@ -61,10 +61,12 @@ const TimeSlotTable = ({salonOpensAt, salonClosesAt}) => {
 
   return (
     <div class="time_slots">
+      <span className="time_slots__cell time_slots__blank"></span>
+
       {timeSlots.map(timeSlot => (
-        <div class="time_slots__cell time_slots__time" key={timeSlot}>
+        <span class="time_slots__cell time_slots__time" key={timeSlot}>
           {toTimeValue(timeSlot)}
-        </div>
+        </span>
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
 export const AppointmentForm = ({
   selectableServices,
@@ -18,6 +18,15 @@ export const AppointmentForm = ({
       [target.name]: target.value,
     }));
   };
+
+  const handleStartsAtChange = useCallback(
+    ({target: {value}}) =>
+      setAppointment(appointment => ({
+        ...appointment,
+        startsAt: parseInt(value),
+      })),
+    []
+  );
 
   return (
     <form
@@ -43,7 +52,8 @@ export const AppointmentForm = ({
         salonOpensAt={salonOpensAt}
         salonClosesAt={salonClosesAt}
         availableTimeSlots={availableTimeSlots}
-        checkedTimeSlot={startsAt}
+        checkedTimeSlot={appointment['startsAt']}
+        handleChange={handleStartsAtChange}
       />
     </form>
   );
@@ -70,6 +80,7 @@ const TimeSlotTable = ({
   salonClosesAt,
   availableTimeSlots,
   checkedTimeSlot,
+  handleChange,
 }) => {
   const dates = weeklyDateValues(today);
   const timeSlots = dailyTimeSlots(salonOpensAt, salonClosesAt);
@@ -114,7 +125,7 @@ const TimeSlotTable = ({
                     type="radio"
                     value={startsAt}
                     checked={isChecked}
-                    readOnly
+                    onChange={handleChange}
                   />
                 </label>
               );

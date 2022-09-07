@@ -20,7 +20,7 @@ export const AppointmentForm = ({
   return (
     <form
       id="appointment"
-      class="appointment_form"
+      className="appointment_form"
       onSubmit={() => onSubmit(appointment)}
     >
       <label htmlFor="service">Service</label>
@@ -54,6 +54,7 @@ AppointmentForm.defaultProps = {
     'Cut & beard trim',
     'Extensions',
   ],
+  today: new Date(),
   salonOpensAt: 9,
   salonClosesAt: 19,
 };
@@ -63,17 +64,17 @@ const TimeSlotTable = ({today, salonOpensAt, salonClosesAt}) => {
   const timeSlots = dailyTimeSlots(salonOpensAt, salonClosesAt);
 
   return (
-    <div class="time_slots">
+    <div className="time_slots">
       <span className="time_slots__cell time_slots__blank"></span>
 
       {dates.map(date => (
-        <span class="time_slots__cell time_slots__date" key={date}>
+        <span className="time_slots__cell time_slots__date" key={date}>
           {toShortDate(date)}
         </span>
       ))}
 
       {timeSlots.map(timeSlot => (
-        <span class="time_slots__cell time_slots__time" key={timeSlot}>
+        <span className="time_slots__cell time_slots__time" key={timeSlot}>
           {toTimeValue(timeSlot)}
         </span>
       ))}

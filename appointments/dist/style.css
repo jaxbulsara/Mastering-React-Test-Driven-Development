@@ -59,3 +59,75 @@ body {
   float: right;
   width: 60%;
 }
+
+/* Appointment form */
+
+.appointment_form {
+  width: 600px;
+  margin: auto;
+}
+
+.select_service_label {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.select_service {
+  float: right;
+  width: 60%;
+}
+
+.time_slots {
+  clear: right;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border: 2px solid black;
+}
+
+.time_slots__cell {
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.time_slots__dates_wrapper {
+  grid-column-start: 2;
+  grid-column-end: 9;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0px;
+  border-left: 1px solid black;
+  margin-left: -1px;
+}
+
+.time_slots__date {
+  border-top: 0px;
+  border-bottom: 1px solid black;
+}
+
+.time_slots__times_wrapper {
+  margin-top: -1px;
+  border-top: 1px solid black;
+}
+
+.time_slots__time {
+  border-left: 0px;
+  border-right: 1px solid black;
+}
+
+.time_slots__choices_wrapper {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 9;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.time_slots__available {
+}
+
+.time_slots__unavailable {
+}

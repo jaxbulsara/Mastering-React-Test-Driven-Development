@@ -34,6 +34,7 @@ describe('AppointmentForm', () => {
 
       expect(field('service')).not.toBeNull();
       expect(field('service').tagName).toEqual('SELECT');
+      expect(field('service').className).toEqual('select_service');
     });
 
     it('initially has a blank value chosen', () => {
@@ -76,6 +77,7 @@ describe('AppointmentForm', () => {
 
       expect(labelFor('service')).not.toBeNull();
       expect(labelFor('service').textContent).toEqual('Service');
+      expect(labelFor('service').className).toEqual('select_service_label');
     });
 
     it('assigns an id that matches the label id', () => {

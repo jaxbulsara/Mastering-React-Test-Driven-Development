@@ -34,10 +34,13 @@ export const AppointmentForm = ({
       className="appointment_form"
       onSubmit={() => onSubmit(appointment)}
     >
-      <label htmlFor="service">Service</label>
+      <label className="select_service_label" htmlFor="service">
+        Service
+      </label>
       <select
         name="service"
         id="service"
+        className="select_service"
         value={appointment['service']}
         onChange={handleChange}
       >

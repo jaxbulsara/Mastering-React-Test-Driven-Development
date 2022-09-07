@@ -6,6 +6,7 @@ export const AppointmentForm = ({
   today,
   salonOpensAt,
   salonClosesAt,
+  availableTimeSlots,
   onSubmit,
 }) => {
   const [appointment, setAppointment] = useState({service});
@@ -40,6 +41,7 @@ export const AppointmentForm = ({
         today={today}
         salonOpensAt={salonOpensAt}
         salonClosesAt={salonClosesAt}
+        availableTimeSlots={availableTimeSlots}
       />
     </form>
   );
@@ -59,25 +61,32 @@ AppointmentForm.defaultProps = {
   salonClosesAt: 19,
 };
 
-const TimeSlotTable = ({today, salonOpensAt, salonClosesAt}) => {
+const TimeSlotTable = ({
+  today,
+  salonOpensAt,
+  salonClosesAt,
+  availableTimeSlots,
+}) => {
   const dates = weeklyDateValues(today);
   const timeSlots = dailyTimeSlots(salonOpensAt, salonClosesAt);
 
   return (
     <div className="time_slots">
-      <span className="time_slots__cell time_slots__blank"></span>
+      <div className="time_slots__dates_wrapper">
+        {dates.map(date => (
+          <span className="time_slots__cell time_slots__date" key={date}>
+            {toShortDate(date)}
+          </span>
+        ))}
+      </div>
 
-      {dates.map(date => (
-        <span className="time_slots__cell time_slots__date" key={date}>
-          {toShortDate(date)}
-        </span>
-      ))}
-
-      {timeSlots.map(timeSlot => (
-        <span className="time_slots__cell time_slots__time" key={timeSlot}>
-          {toTimeValue(timeSlot)}
-        </span>
-      ))}
+      <div className="time_slots__times_wrapper">
+        {timeSlots.map(timeSlot => (
+          <div className="time_slots__cell time_slots__time" key={timeSlot}>
+            {toTimeValue(timeSlot)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

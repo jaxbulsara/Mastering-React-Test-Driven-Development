@@ -130,6 +130,8 @@ describe('AppointmentForm', () => {
 
   describe('time slot table', () => {
     const timeSlotTable = () => container.querySelector('.time_slots');
+    const dateRow = () =>
+      timeSlotTable().querySelector('.time_slots__date_row');
 
     it('renders a container for the time slots', () => {
       render(<AppointmentForm />);
@@ -140,7 +142,10 @@ describe('AppointmentForm', () => {
     it('renders a time slot for every half hour between open and close times', () => {
       render(<AppointmentForm salonOpensAt={9} salonClosesAt={11} />);
 
-      const timesOfDay = timeSlotTable().querySelectorAll('.time_slots__time');
+      const timeSlotWrapper = timeSlotTable().querySelector(
+        '.time_slots__times_wrapper'
+      );
+      const timesOfDay = timeSlotWrapper.querySelectorAll('.time_slots__time');
 
       expect(timesOfDay).toHaveLength(4);
       expect(timesOfDay[0].textContent).toEqual('09:00');
@@ -153,21 +158,15 @@ describe('AppointmentForm', () => {
       );
     });
 
-    it('renders an empty cell as the first cell in the table.', () => {
-      render(<AppointmentForm />);
-
-      expect(timeSlotTable().firstChild.textContent).toEqual('');
-      expect(timeSlotTable().firstChild.className).toEqual(
-        'time_slots__cell time_slots__blank'
-      );
-    });
-
     it('renders a week of available dates', () => {
       const today = new Date(2022, 8, 7);
 
       render(<AppointmentForm today={today} />);
 
-      const dates = timeSlotTable().querySelectorAll('.time_slots__date');
+      const datesWrapper = timeSlotTable().querySelector(
+        '.time_slots__dates_wrapper'
+      );
+      const dates = datesWrapper.querySelectorAll('.time_slots__date');
 
       expect(dates).toHaveLength(7);
       expect(dates[0].textContent).toEqual('Wed 07');
@@ -178,6 +177,42 @@ describe('AppointmentForm', () => {
         dates,
         'time_slots__cell time_slots__date'
       );
+    });
+
+    it.skip('renders a radio button for each time slot', () => {
+      const today = new Date();
+      const availableTimeSlots = [
+        {startsAt: today.setHours(9, 0, 0, 0)},
+        {startsAt: today.setHours(9, 30, 0, 0)},
+      ];
+
+      render(
+        <AppointmentForm
+          availableTimeSlots={availableTimeSlots}
+          today={today}
+        />
+      );
+
+      const cells = timeSlotTable().querySelectorAll('.time_slots__cell');
+
+      expect(cells[9].tagName).toEqual('LABEL');
+      expect(cells[9].className).toContain('time_slots__available');
+      expect(cells[9].querySelector('input[type="radio"]')).not.toBeNull();
+      expect(cells[9].parentNode.className).toEqual(
+        'time_slots__time_slot_row'
+      );
+
+      expect(cells[10].tagName).toEqual('SPAN');
+      expect(cells[10].className).toContain('time_slots__unavailable');
+      expect(cells[10].querySelector('input[type="radio"]')).toBeNull();
+
+      expect(cells[17].tagName).toEqual('LABEL');
+      expect(cells[17].className).toContain('time_slots__available');
+      expect(cells[17].querySelector('input[type="radio"]')).not.toBeNull();
+
+      expect(cells[23].tagName).toEqual('SPAN');
+      expect(cells[23].className).toContain('time_slots__unavailable');
+      expect(cells[23].querySelector('input[type="radio"]')).toBeNull();
     });
   });
 });

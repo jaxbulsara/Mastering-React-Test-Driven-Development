@@ -91,24 +91,30 @@ const TimeSlotTable = ({
 
       <div className="time_slots__choices_wrapper">
         {timeSlots.map(timeSlot =>
-          dates.map(date =>
-            availableTimeSlots.some(
-              availableTimeSlot =>
-                availableTimeSlot.startsAt === mergeDateAndTime(date, timeSlot)
-            ) ? (
-              <label
-                className="time_slots__cell time_slots__available"
-                key={mergeDateAndTime(date, timeSlot)}
-              >
-                <input type="radio" />
-              </label>
-            ) : (
+          dates.map(date => {
+            const startsAt = mergeDateAndTime(date, timeSlot);
+
+            if (
+              availableTimeSlots.some(
+                availableTimeSlot => availableTimeSlot.startsAt === startsAt
+              )
+            ) {
+              return (
+                <label
+                  className="time_slots__cell time_slots__available"
+                  key={startsAt}
+                >
+                  <input name="startsAt" type="radio" value={startsAt} />
+                </label>
+              );
+            }
+            return (
               <span
                 className="time_slots__cell time_slots__unavailable"
-                key={mergeDateAndTime(date, timeSlot)}
+                key={startsAt}
               />
-            )
-          )
+            );
+          })
         )}
       </div>
     </div>

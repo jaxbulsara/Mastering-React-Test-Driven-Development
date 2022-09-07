@@ -234,5 +234,32 @@ describe('AppointmentForm', () => {
       expect(cells[13].className).toContain('time_slots__unavailable');
       expect(cells[13].querySelector('input[type="radio"]')).toBeNull();
     });
+
+    it('sets radio button values to the index of the corresponding appointment', () => {
+      const today = new Date();
+      const availableTimeSlots = [
+        {startsAt: today.setHours(9, 0, 0, 0)},
+        {startsAt: today.setHours(9, 30, 0, 0)},
+      ];
+
+      render(
+        <AppointmentForm
+          availableTimeSlots={availableTimeSlots}
+          today={today}
+        />
+      );
+
+      const choicesWrapper = timeSlotTable().querySelector(
+        '.time_slots__choices_wrapper'
+      );
+      const inputs = choicesWrapper.querySelectorAll('input[name="startsAt"]');
+
+      expect(inputs[0].value).toEqual(
+        availableTimeSlots[0].startsAt.toString()
+      );
+      expect(inputs[1].value).toEqual(
+        availableTimeSlots[1].startsAt.toString()
+      );
+    });
   });
 });

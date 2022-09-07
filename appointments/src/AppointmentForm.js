@@ -38,7 +38,7 @@ export const AppointmentForm = ({
       <select
         name="service"
         id="service"
-        value={service}
+        value={appointment['service']}
         onChange={handleChange}
       >
         <option />

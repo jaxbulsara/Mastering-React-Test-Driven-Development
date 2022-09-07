@@ -2,12 +2,17 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {AppointmentsDayView} from './AppointmentsDayView';
 import {CustomerForm} from './CustomerForm';
-import {sampleAppointments} from './sampleData';
+import {AppointmentForm} from './AppointmentForm';
+import {sampleAppointments, sampleAvailableTimeSlots} from './sampleData';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-// const component = <AppointmentsDayView appointments={sampleAppointments} />;
-const component = (
+
+const appointmentDayViewComponent = (
+  <AppointmentsDayView appointments={sampleAppointments} />
+);
+
+const customerFormComponent = (
   <CustomerForm
     firstName="jay"
     lastName="bulsara"
@@ -15,4 +20,9 @@ const component = (
     onSubmit={props => null}
   />
 );
-root.render(component);
+
+const appointmentFormComponent = (
+  <AppointmentForm availableTimeSlots={sampleAvailableTimeSlots} />
+);
+
+root.render(appointmentFormComponent);

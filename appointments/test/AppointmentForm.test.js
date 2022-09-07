@@ -122,4 +122,12 @@ describe('AppointmentForm', () => {
       ReactTestUtils.Simulate.submit(form('appointment'));
     });
   });
+
+  describe('time slot table', () => {
+    it('renders a container for the time slots', () => {
+      render(<AppointmentForm />);
+
+      expect(container.querySelector('div.time_slots')).not.toBeNull();
+    });
+  });
 });

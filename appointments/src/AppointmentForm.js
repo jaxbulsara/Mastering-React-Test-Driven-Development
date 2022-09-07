@@ -28,6 +28,8 @@ export const AppointmentForm = ({selectableServices, service, onSubmit}) => {
           <option key={s}>{s}</option>
         ))}
       </select>
+
+      <TimeSlotTable />
     </form>
   );
 };
@@ -41,4 +43,8 @@ AppointmentForm.defaultProps = {
     'Cut & beard trim',
     'Extensions',
   ],
+};
+
+const TimeSlotTable = () => {
+  return <div class="time_slots"></div>;
 };

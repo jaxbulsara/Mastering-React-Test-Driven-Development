@@ -123,7 +123,7 @@ describe('AppointmentForm', () => {
     });
   });
 
-  const expectAllElementsToHaveClass = (elementNodes, className) =>
+  const expectEachElementToHaveClassName = (elementNodes, className) =>
     expect(Array.from(elementNodes).map(node => node.className)).toEqual(
       Array(4).fill(className)
     );
@@ -147,7 +147,7 @@ describe('AppointmentForm', () => {
       expect(timesOfDay[1].textContent).toEqual('09:30');
       expect(timesOfDay[3].textContent).toEqual('10:30');
 
-      expectAllElementsToHaveClass(
+      expectEachElementToHaveClassName(
         timesOfDay,
         'time_slots__cell time_slots__time'
       );

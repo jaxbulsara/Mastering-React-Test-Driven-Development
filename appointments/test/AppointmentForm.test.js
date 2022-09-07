@@ -123,6 +123,11 @@ describe('AppointmentForm', () => {
     });
   });
 
+  const expectAllElementsToHaveClass = (elementNodes, className) =>
+    expect(Array.from(elementNodes).map(node => node.className)).toEqual(
+      Array(4).fill(className)
+    );
+
   describe('time slot table', () => {
     const timeSlotTable = () => container.querySelector('.time_slots');
 
@@ -142,9 +147,10 @@ describe('AppointmentForm', () => {
       expect(timesOfDay[1].textContent).toEqual('09:30');
       expect(timesOfDay[3].textContent).toEqual('10:30');
 
-      expect(
-        Array.from(timesOfDay).map(timeSlot => timeSlot.className)
-      ).toEqual(Array(4).fill('time_slots__cell time_slots__time'));
+      expectAllElementsToHaveClass(
+        timesOfDay,
+        'time_slots__cell time_slots__time'
+      );
     });
   });
 });

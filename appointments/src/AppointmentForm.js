@@ -104,7 +104,7 @@ const TimeSlotTable = ({
               </label>
             ) : (
               <span
-                className="time_slots__cell"
+                className="time_slots__cell time_slots__unavailable"
                 key={mergeDateAndTime(date, timeSlot)}
               />
             )

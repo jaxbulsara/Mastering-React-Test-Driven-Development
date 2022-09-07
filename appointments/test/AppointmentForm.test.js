@@ -179,7 +179,7 @@ describe('AppointmentForm', () => {
       );
     });
 
-    it('renders a radio button for each time slot', () => {
+    it('renders a radio button for each available time slot', () => {
       const today = new Date();
       const availableTimeSlots = [
         {startsAt: today.setHours(9, 0, 0, 0)},
@@ -205,6 +205,34 @@ describe('AppointmentForm', () => {
       expect(cells[7].tagName).toEqual('LABEL');
       expect(cells[7].className).toContain('time_slots__available');
       expect(cells[7].querySelector('input[type="radio"]')).not.toBeNull();
+    });
+
+    it('renders a blank element for each unavailable time slot', () => {
+      const today = new Date();
+      const availableTimeSlots = [
+        {startsAt: today.setHours(9, 0, 0, 0)},
+        {startsAt: today.setHours(9, 30, 0, 0)},
+      ];
+
+      render(
+        <AppointmentForm
+          availableTimeSlots={availableTimeSlots}
+          today={today}
+        />
+      );
+
+      const choicesWrapper = timeSlotTable().querySelector(
+        '.time_slots__choices_wrapper'
+      );
+      const cells = choicesWrapper.querySelectorAll('.time_slots__cell');
+
+      expect(cells[1].tagName).toEqual('SPAN');
+      expect(cells[1].className).toContain('time_slots__unavailable');
+      expect(cells[1].querySelector('input[type="radio"]')).toBeNull();
+
+      expect(cells[13].tagName).toEqual('SPAN');
+      expect(cells[13].className).toContain('time_slots__unavailable');
+      expect(cells[13].querySelector('input[type="radio"]')).toBeNull();
     });
   });
 });

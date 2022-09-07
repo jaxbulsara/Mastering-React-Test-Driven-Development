@@ -7,9 +7,10 @@ export const AppointmentForm = ({
   salonOpensAt,
   salonClosesAt,
   availableTimeSlots,
+  startsAt,
   onSubmit,
 }) => {
-  const [appointment, setAppointment] = useState({service});
+  const [appointment, setAppointment] = useState({service, startsAt});
 
   const handleChange = ({target}) => {
     setAppointment(appointment => ({
@@ -42,6 +43,7 @@ export const AppointmentForm = ({
         salonOpensAt={salonOpensAt}
         salonClosesAt={salonClosesAt}
         availableTimeSlots={availableTimeSlots}
+        checkedTimeSlot={startsAt}
       />
     </form>
   );
@@ -67,6 +69,7 @@ const TimeSlotTable = ({
   salonOpensAt,
   salonClosesAt,
   availableTimeSlots,
+  checkedTimeSlot,
 }) => {
   const dates = weeklyDateValues(today);
   const timeSlots = dailyTimeSlots(salonOpensAt, salonClosesAt);
@@ -99,15 +102,24 @@ const TimeSlotTable = ({
                 availableTimeSlot => availableTimeSlot.startsAt === startsAt
               )
             ) {
+              const isChecked = startsAt === checkedTimeSlot;
+
               return (
                 <label
                   className="time_slots__cell time_slots__available"
                   key={startsAt}
                 >
-                  <input name="startsAt" type="radio" value={startsAt} />
+                  <input
+                    name="startsAt"
+                    type="radio"
+                    value={startsAt}
+                    checked={isChecked}
+                    readOnly
+                  />
                 </label>
               );
             }
+
             return (
               <span
                 className="time_slots__cell time_slots__unavailable"

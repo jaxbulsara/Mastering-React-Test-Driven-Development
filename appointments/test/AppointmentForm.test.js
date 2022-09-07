@@ -125,7 +125,7 @@ describe('AppointmentForm', () => {
 
   const expectEachElementToHaveClassName = (elementNodes, className) =>
     expect(Array.from(elementNodes).map(node => node.className)).toEqual(
-      Array(4).fill(className)
+      Array(elementNodes.length).fill(className)
     );
 
   describe('time slot table', () => {

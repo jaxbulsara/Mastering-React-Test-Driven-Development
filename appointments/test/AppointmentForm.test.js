@@ -124,10 +124,27 @@ describe('AppointmentForm', () => {
   });
 
   describe('time slot table', () => {
+    const timeSlotTable = () => container.querySelector('.time_slots');
+
     it('renders a container for the time slots', () => {
       render(<AppointmentForm />);
 
-      expect(container.querySelector('div.time_slots')).not.toBeNull();
+      expect(timeSlotTable()).not.toBeNull();
+    });
+
+    it('renders a time slot for every half hour between open and close times', () => {
+      render(<AppointmentForm salonOpensAt={9} salonClosesAt={11} />);
+
+      const timesOfDay = timeSlotTable().querySelectorAll('.time_slots__time');
+
+      expect(timesOfDay).toHaveLength(4);
+      expect(timesOfDay[0].textContent).toEqual('09:00');
+      expect(timesOfDay[1].textContent).toEqual('09:30');
+      expect(timesOfDay[3].textContent).toEqual('10:30');
+
+      expect(
+        Array.from(timesOfDay).map(timeSlot => timeSlot.className)
+      ).toEqual(Array(4).fill('time_slots__cell time_slots__time'));
     });
   });
 });

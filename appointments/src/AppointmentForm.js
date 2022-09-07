@@ -59,6 +59,7 @@ AppointmentForm.defaultProps = {
   today: new Date(),
   salonOpensAt: 9,
   salonClosesAt: 19,
+  availableTimeSlots: [],
 };
 
 const TimeSlotTable = ({
@@ -86,6 +87,29 @@ const TimeSlotTable = ({
             {toTimeValue(timeSlot)}
           </div>
         ))}
+      </div>
+
+      <div className="time_slots__choices_wrapper">
+        {timeSlots.map(timeSlot =>
+          dates.map(date =>
+            availableTimeSlots.some(
+              availableTimeSlot =>
+                availableTimeSlot.startsAt === mergeDateAndTime(date, timeSlot)
+            ) ? (
+              <label
+                className="time_slots__cell time_slots__available"
+                key={mergeDateAndTime(date, timeSlot)}
+              >
+                <input type="radio" />
+              </label>
+            ) : (
+              <span
+                className="time_slots__cell"
+                key={mergeDateAndTime(date, timeSlot)}
+              />
+            )
+          )
+        )}
       </div>
     </div>
   );
@@ -119,3 +143,14 @@ const timeIncrements = (numTimes, startTime, increment) =>
   Array(numTimes)
     .fill([startTime])
     .reduce((acc, _, i) => acc.concat([startTime + i * increment]));
+
+const mergeDateAndTime = (date, timeSlot) => {
+  const time = new Date(timeSlot);
+
+  return new Date(date).setHours(
+    time.getHours(),
+    time.getMinutes(),
+    time.getSeconds(),
+    time.getMilliseconds()
+  );
+};
